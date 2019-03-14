@@ -1,0 +1,20 @@
+version: '2'
+
+networks:
+  nodehome-net:
+    external:
+      name: nodehome-net
+
+services:
+  svm.4intel.net:
+    container_name: svm.4intel.net
+    image: {image name}:0.1
+    working_dir: /home/webapps
+    command : /opt/tomcat/bin/catalina.sh run
+    volumes:
+#    - ../webapps:/home/webapps/NodeHome-Platform-SVM
+    - ./tomcat/conf/server.xml:/opt/tomcat/conf/server.xml
+    ports:
+      - 8080:8080
+    networks:
+      - nodehome-net

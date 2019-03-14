@@ -1,0 +1,54 @@
+
+※ 이미지명 nodehome/test-service 는 예시.
+
+########## 개발자 (서비스 운영자) ########## 
+
+1. /home/원하는폴더 위치에서 소스 다운로드
+> git clone https://github.com/4intel/NodeHome-Platform-SVM
+
+- NodeHome-Platform/
+			ㄴ NodeHome-Platform-SVM-BASE	: SVM 기본 소스 폴더
+			ㄴ docker						: docker 실행 폴더
+			
+이후 개발자 개발환경 Eclipse에 프로젝트 생성
+
+2. 개발 완료 후 배포 버전 소스 
+	NodeHome-Platform/docker/source/ 에 전체 복사
+	ex) NodeHome-Platform/docker/source/index.jsp
+
+3. build 설정파일 이미지명 수정
+> vi NodeHome-Platform/docker/docker-build.sh
+> vi NodeHome-Platform/docker/Dockerfile
+
+4. Docker build 실행
+> NodeHome-Platform/docker/docker-build.sh
+
+5. docker image 생성 확인
+> docker images
+
+6. dockerhub https://hub.docker.com/ 에 개발자 계정으로 업로드.
+> docker push 이미지명:TAG
+
+
+########## Sapp 서버 운영자 ########## 
+
+1. dockerhub https://hub.docker.com/ 에서 image 다운로드 
+> docker pull 이미지명
+> docker images
+	REPOSITORY              TAG                 IMAGE ID            CREATED             SIZE
+	nodehome/test-service   0.1                 523b22a87340        2 hours ago         936MB
+생성됨.
+
+2. docker 이미지 실행 설정 수정
+> vi NodeHome-Platform/docker/docker-compose.yaml
+
+3. docker 실행
+> /NodeHome-Platform/docker/docker-run.sh start
+
+4. docker ps 확인
+	CONTAINER ID        IMAGE                       COMMAND                  CREATED             STATUS              PORTS                              NAMES
+	0809d3fbd46d        nodehome/test-service:0.1   "/opt/tomcat/bin/cat…"   26 minutes ago      Up 26 minutes       8009/tcp, 0.0.0.0:8080->8080/tcp   svm.4intel.net
+
+5. 브라우저에서 http://ip:port 페이지 확인
+
+
