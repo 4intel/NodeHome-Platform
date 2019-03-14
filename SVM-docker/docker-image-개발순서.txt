@@ -4,7 +4,7 @@
 ########## 개발자 (서비스 운영자) ########## 
 
 1. /home/원하는폴더 위치에서 소스 다운로드
-> git clone https://github.com/4intel/NodeHome-Platform-SVM
+> git clone https://github.com/4intel/NodeHome-Platform
 
 - NodeHome-Platform/
 			ㄴ SVM-NodeHome-Platform-SVM-BASE	: SVM 기본 소스 폴더
